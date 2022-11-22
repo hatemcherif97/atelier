@@ -46,19 +46,19 @@ stage('Integration testing'){
                 }
             }
         }
-#          stage('Static code analysis'){
+/*          stage('Static code analysis'){
 
- #           steps{
+            steps{
 
-  #              script{
+                script{
 
-   #                 withSonarQubeEnv(credentialsId: 'tokenCI') {
+                    withSonarQubeEnv(credentialsId: 'tokenCI') {
 
-    #                    sh 'mvn clean package sonar:sonar'
-     #               }
-      #  }
-       #  }
-    #}
+                        sh 'mvn clean package sonar:sonar'
+                    }
+        }
+         }
+    }*/
         
  stage('nexus_Repos') {
         steps{
