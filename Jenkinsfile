@@ -81,7 +81,7 @@ stage('Integration testing'){
                     version: "${modif.version}"
             }
         }
-
+ }
 
  }
  }
