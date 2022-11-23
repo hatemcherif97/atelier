@@ -63,8 +63,9 @@ stage('Integration testing'){
  stage('nexus_Repos') {
         steps{
             script{
-                def modif = readMavenPom file: 'pom.xml'
-                def nexusrepo = readpomversion.version.endsWith("SNAPSHOT") ?  "democi-snapshot" :"democicd-repo"
+                pom = readMavenPom(file: 'pom.xml')
+                def pomversion = pom.version
+                nexusRepo = pomversion.endsWith("SNAPSHOT") ? "democi-snapshot": "democicd-repo"
                 nexusArtifactUploader artifacts:
                 [
                  [
@@ -77,12 +78,10 @@ stage('Integration testing'){
                     nexusUrl: 'localhost:8081', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
-                    repository: 'nexusrepo' , 
-                    version: "${modif.version}"
+                    repository: nexusRepo , 
+                    version: "${pomversion}"
             }
-        }
- }
-
- }
- }
-
+         }
+      }
+   }
+}
